@@ -1,3 +1,6 @@
+# Copyright (c) 2026, Ianna Osborne
+# SPDX-License-Identifier: BSD-3-Clause
+
 import awkward as ak
 from juliacall import Main as jl
 
