@@ -28,7 +28,11 @@ jl_params = jl.convert(jl.Vector[jl.Float64], params_py)
 # This returns a list of matrices (one matrix per sub-list)
 jac_jl = jl.get_ragged_jacobian(jl_params, jl_data)
 
-# 6. Back to Python (copy) (for zero-copy -- see AwkwardArray.jl tutorial)
-jac_py = ak.from_iter(jac_jl)
+# 6. Back to Python 
+jac_py = ak.Array(jac_ak_jl)
 print("--- Final Ragged Jacobian ---")
 print(jac_py)
+
+# 7. Summing the gradients across the 'ragged' dimension
+total_sensitivity = ak.sum(jac_py, axis=1)
+print("Total Sensitivity per event:", total_sensitivity)
